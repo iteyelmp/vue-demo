@@ -16,35 +16,46 @@
       clearable
       clear-trigger="always"
     />
+    <MovieTop :movies="movies" />
   </div>
 </template>
 
 <script>
 import { ref } from "vue";
-import { Toast, NavBar, Search } from "vant";
 import { useRouter } from "vue-router";
+import { Toast, NavBar, Search } from "vant";
+import MovieTop from "../components/MovieTop";
 
 export default {
   components: {
     [NavBar.name]: NavBar,
-    [Search.name]: Search
+    [Search.name]: Search,
+    MovieTop
   },
   setup() {
     const router = useRouter();
     const leftText = ref("返回");
     const leftArrow = ref(true);
+    const movies = [
+      {
+        title: "test",
+        image:
+          "https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3892521478,1695688217&fm=26&gp=0.jpg",
+        rating: 2.5
+      }
+    ];
 
     const onClickLeft = () => {
       Toast.success("返回");
       router.go(-1);
     };
     const onClickRight = () => {
+      Toast.fail("按钮");
       leftText.value = "";
       leftArrow.value = false;
-      Toast.fail("按钮");
     };
 
-    return { leftText, leftArrow, onClickLeft, onClickRight };
+    return { leftText, leftArrow, movies, onClickLeft, onClickRight };
   }
 };
 </script>
