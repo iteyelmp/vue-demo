@@ -1,4 +1,15 @@
 module.exports = {
+    devServer: {
+        // 跨越代理
+        proxy: {
+            '/api': {
+                target: 'http://t.yushu.im',
+                pathRewrite: {
+                    '^/api': ''
+                }
+            }
+        }
+    },
     css: {
         loaderOptions: {
             less: {

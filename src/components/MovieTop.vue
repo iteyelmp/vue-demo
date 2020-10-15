@@ -57,9 +57,11 @@ export default {
 
 .movie-banner {
   display: flex;
-  padding: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   margin-top: 10px;
   width: 100%;
   overflow-x: scroll;
+  justify-content: flex-start;
 }
 </style>

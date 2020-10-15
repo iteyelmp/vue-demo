@@ -9,7 +9,7 @@
       </template>
     </van-image>
     <div class="title">{{movie.title}}</div>
-    <van-rate v-model="rate" allow-half :readonly="true" />
+    <van-rate v-model="rate" allow-half :readonly="true" size="15px" />
   </div>
 </template>
 
@@ -34,9 +34,11 @@ export default {
 .movie-box {
   display: flex;
   flex-direction: column;
-  width: 30%;
+  width: 100px;
+  /*避免不同屏幕卡片大小间距不一致 */
   height: 205px;
-  margin-left: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 .cover-image {
   width: 100px;

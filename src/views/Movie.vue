@@ -25,6 +25,7 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { Toast, NavBar, Search } from "vant";
 import MovieTop from "../components/MovieTop";
+import { getMovieSection } from "../utils/movie";
 
 export default {
   components: {
@@ -36,14 +37,11 @@ export default {
     const router = useRouter();
     const leftText = ref("返回");
     const leftArrow = ref(true);
-    const movies = [
-      {
-        title: "test",
-        image:
-          "https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3892521478,1695688217&fm=26&gp=0.jpg",
-        rating: 2.5
-      }
-    ];
+
+    const movies = ref([]);
+    getMovieSection("coming_soon").then(res => {
+      movies.value = res.movies;
+    });
 
     const onClickLeft = () => {
       Toast.success("返回");
