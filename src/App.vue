@@ -2,6 +2,8 @@
   <div id="nav">
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
+<!--重定向路由    -->
+<!--    <router-link to="/lmp/about">About</router-link>-->
   </div>
   <!-- 路由的容器 -->
   <router-view/>
