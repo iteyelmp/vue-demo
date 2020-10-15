@@ -1,4 +1,4 @@
-import {createRouter, createWebHistory} from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 // createWebHashHistory 路径带# 如：http://localhost:8080/#/about
 // createWebHistory路径不带# 如：http://localhost:8081/about
 import Home from '../views/Home.vue';
@@ -19,6 +19,12 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     // 访问about组件
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+  },
+  //调整页
+  {
+    path: '/movie',
+    name: 'Movie',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Movie.vue'),
   },
 ];
 
