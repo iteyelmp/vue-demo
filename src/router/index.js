@@ -1,24 +1,28 @@
 import { createRouter, createWebHistory } from 'vue-router';
 // createWebHashHistory 路径带# 如：http://localhost:8080/#/about
 // createWebHistory路径不带# 如：http://localhost:8081/about
+import Main from '../views/Main.vue';
 import Home from '../views/Home.vue';
 
 const routes = [
   //主页
   {
     path: '/',// /根路径
-    name: 'Home',
-    component: Home, // 该路径访问那个组件 （home）
-  },
-  //调整页
-  {
-    path: '/about', // 根路径/about 如：http://localhost:8080/#/about
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    // 访问about组件
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+    name: 'Main',
+    component: Main, // 该路径访问那个组件 （home）
+    children: [
+      {
+        path: '',
+        name: 'Home',
+        component: Home,
+      },
+      {
+        path: 'about', // 根路径/lmp/about 如：http://localhost:8080/lmp/about
+        name: 'About',
+        // 访问about组件
+        component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+      },
+    ],
   },
   //调整页
   {
