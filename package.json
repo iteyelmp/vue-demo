@@ -23,6 +23,7 @@
     "@coolwallet/qkc": "^0.1.0-beta.1",
     "@coolwallet/transport-web-ble": "^0.1.0-beta.4",
     "@coolwallet/wallet": "^0.1.0-beta.0",
+    "@coolwallets/transport-web-ble": "^0.1.0",
     "bip32": "^2.0.6"
   }
 }

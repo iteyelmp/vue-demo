@@ -1,4 +1,4 @@
-import WebBleTransport from '@coolwallet/transport-web-ble';
+import WebBleTransport from '@coolwallets/transport-web-ble';
 // import cwsQKC from '@coolwallet/qkc';
 // import {getAppKeysOrGenerate, getAppIdOrNull} from './coolWalletSdkUtil';
 // const {appPrivateKey} = getAppKeysOrGenerate();
