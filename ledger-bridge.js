@@ -14,6 +14,7 @@ class LedgerBridge {
     window.addEventListener(
       'message',
       async eve => {
+        console.log('-----listenFromIframe-----', eve);
         if (eve && eve.data && eve.data.target === 'LEDGER-IFRAME') {
           const {action, params} = eve.data;
 
