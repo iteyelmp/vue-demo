@@ -1,0 +1,25 @@
+{
+  "name": "quarkchainplugin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "browserify index.js -o bundle.js -t [ babelify --presets[env]]",
+    "build:w": "webpack --mode production ./index.js -o ./bundle.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "babelify": "^10.0.0",
+    "browserify": "^16.5.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12"
+  },
+  "dependencies": {
+    "@ledgerhq/hw-app-eth": "^5.19.0",
+    "@ledgerhq/hw-transport-u2f": "^5.19.0"
+  }
+}
