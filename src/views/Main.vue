@@ -1,5 +1,5 @@
 <template>
-  <div id="nav">
+  <div class="nav">
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
     <!--重定向路由-->
@@ -18,22 +18,22 @@
   color: #2c3e50;
 }
 
-#nav {
+.nav {
   padding: 30px;
 }
 
-#nav a {
+.nav a {
   font-weight: bold;
   text-decoration: none;
   color: #2c3e50;
 }
 
-#nav a:hover {
+.nav a:hover {
   text-decoration: none;
   color: rebeccapurple;
 }
 
-#nav a.router-link-exact-active {
+.nav a.router-link-exact-active {
   color: #42b983;
 }
 </style>

@@ -8,14 +8,14 @@
       @click-left="onClickLeft"
       @click-right="onClickRight"
     />
-    <van-search
-      v-model="value"
-      placeholder="请输入搜索关键词"
-      background="#75c6f5"
-      shape="round"
-      clearable
-      clear-trigger="always"
-    />
+<!--    <van-search-->
+<!--      v-model="value"-->
+<!--      placeholder="请输入搜索关键词"-->
+<!--      background="#75c6f5"-->
+<!--      shape="round"-->
+<!--      clearable-->
+<!--      clear-trigger="always"-->
+<!--    />-->
     <MovieTop :movies="movies" />
   </div>
 </template>
