@@ -50,6 +50,16 @@ class LedgerBridge {
       },
       false,
     );
+
+    // // Dispatch the event.
+    // var msg = {
+    //   action: "ledger-import",
+    //   params: {
+    //     hdPath: `44'/99999999'/0'/0/0`
+    //   }
+    // };
+    // msg.target = "LEDGER-IFRAME";
+    // window.postMessage(msg, '*');
   }
 
   sendMessageToExtension(msg) {
@@ -78,10 +88,10 @@ class LedgerBridge {
 
   async import(actionReply, hdPath) {
     try {
-      await this.initApp();
+      // await this.initApp();
       // const res = await this.app.getAddress(this.transport, appPrivateKey,
       //   appId, 0);
-      const res = '';
+      const res = '0xC85d47b72cA69D2342426C7F1b0930a80178667C';
       this.sendMessageToExtension({
         action: actionReply,
         success: true,
