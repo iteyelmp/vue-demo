@@ -19,7 +19,10 @@
     "webpack-cli": "^3.3.12"
   },
   "dependencies": {
-    "@ledgerhq/hw-app-eth": "^5.19.0",
-    "@ledgerhq/hw-transport-u2f": "^5.19.0"
+    "@coolwallet/core": "^0.1.0-beta.28",
+    "@coolwallet/qkc": "^0.1.0-beta.1",
+    "@coolwallet/transport-web-ble": "^0.1.0-beta.4",
+    "@coolwallet/wallet": "^0.1.0-beta.0",
+    "bip32": "^2.0.6"
   }
 }
