@@ -1,7 +1,6 @@
-// import WebBleTransport from '@coolwallet/transport-web-ble';
+import WebBleTransport from '@coolwallet/transport-web-ble';
 // import cwsQKC from '@coolwallet/qkc';
 // import {getAppKeysOrGenerate, getAppIdOrNull} from './coolWalletSdkUtil';
-//
 // const {appPrivateKey} = getAppKeysOrGenerate();
 // const appId = getAppIdOrNull();
 
@@ -51,16 +50,6 @@ class LedgerBridge {
       },
       false,
     );
-
-    // // Dispatch the event.
-    // var msg = {
-    //   action: "ledger-import",
-    //   params: {
-    //     hdPath: `44'/99999999'/0'/0/0`
-    //   }
-    // };
-    // msg.target = "LEDGER-IFRAME";
-    // window.postMessage(msg, '*');
   }
 
   sendMessageToExtension(msg) {
@@ -68,18 +57,19 @@ class LedgerBridge {
   }
 
   async initApp() {
-    // try {
-    //   WebBleTransport.listen(async (error, device) => {
-    //     console.log('device', device);
-    //     if (device) {
-    //       this.transport = await WebBleTransport.connect(device);
-    //       console.log('transport',transport);
-    //       this.app = new cwsQKC();
-    //     } else throw error;
-    //   });
-    // } catch (err) {
-    //   console.log('COLLWALLET:::CREATE APP ERROR', err);
-    // }
+    try {
+      console.log('initApp');
+      WebBleTransport.listen(async (error, device) => {
+        console.log('device', device);
+        if (device) {
+          this.transport = await WebBleTransport.connect(device);
+          console.log('transport',transport);
+          this.app = new cwsQKC();
+        } else throw error;
+      });
+    } catch (err) {
+      console.log('COLLWALLET:::CREATE APP ERROR', err);
+    }
   }
 
   cleanUp() {
@@ -89,7 +79,7 @@ class LedgerBridge {
 
   async import(actionReply, hdPath) {
     try {
-      // await this.initApp();
+      await this.initApp();
       // const res = await this.app.getAddress(this.transport, appPrivateKey,
       //   appId, 0);
       const res = '0xC85d47b72cA69D2342426C7F1b0930a80178667C';
