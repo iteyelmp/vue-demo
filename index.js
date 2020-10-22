@@ -1,3 +1,5 @@
+import "regenerator-runtime/runtime";
+import "core-js/stable";
 import LedgerBridge from './ledger-bridge';
 
 (async () => {
