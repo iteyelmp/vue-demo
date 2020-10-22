@@ -63,8 +63,7 @@ class LedgerBridge {
         console.log('device', device);
         if (device) {
           this.transport = await WebBleTransport.connect(device);
-          console.log('transport',transport);
-          this.app = new cwsQKC();
+          console.log('transport', transport);
         } else throw error;
       });
     } catch (err) {
@@ -84,7 +83,8 @@ class LedgerBridge {
         if (device) {
           console.log('----import-----device', device);
           this.transport = await WebBleTransport.connect(device);
-          console.log('transport',transport);
+          console.log('transport', transport);
+
           const res = '0xC85d47b72cA69D2342426C7F1b0930a80178667C';
           this.sendMessageToExtension({
             action: actionReply,
