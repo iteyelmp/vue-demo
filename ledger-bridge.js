@@ -45,7 +45,7 @@ class LedgerBridge {
           };
           actionMap[action]();
         } else {
-          console.log('not ledger-iframe', eve);
+          console.log('not collwallet-iframe', eve);
         }
       },
       false,
@@ -62,12 +62,12 @@ class LedgerBridge {
         console.log('device', device);
         if (device) {
           this.transport = await WebBleTransport.connect(device);
-          console.log(transport);
+          console.log('transport',transport);
           this.app = new cwsQKC();
         } else throw error;
       });
     } catch (err) {
-      console.log('LEDGER:::CREATE APP ERROR', err);
+      console.log('COLLWALLET:::CREATE APP ERROR', err);
     }
   }
 
@@ -79,8 +79,9 @@ class LedgerBridge {
   async import(actionReply, hdPath) {
     try {
       await this.initApp();
-      const res = await this.app.getAddress(this.transport, appPrivateKey,
-        appId, 0);
+      // const res = await this.app.getAddress(this.transport, appPrivateKey,
+      //   appId, 0);
+      const res = '';
       this.sendMessageToExtension({
         action: actionReply,
         success: true,
@@ -101,7 +102,8 @@ class LedgerBridge {
   async unlock(actionReply, hdPath) {
     try {
       await this.initApp();
-      const res = await this.app.getAddress(hdPath, false, true);
+      // const res = await this.app.getAddress(hdPath, false, true);
+      const res = '';
       this.sendMessageToExtension({
         action: actionReply,
         success: true,
@@ -143,7 +145,8 @@ class LedgerBridge {
   async getAppConfiguration(actionReply) {
     try {
       await this.initApp();
-      const res = await this.app.getAppConfiguration();
+      // const res = await this.app.getAppConfiguration();
+      const res = {};
       this.sendMessageToExtension({
         action: actionReply,
         success: true,
@@ -164,7 +167,8 @@ class LedgerBridge {
   async signTransaction(actionReply, hdPath, serializedTxHex) {
     try {
       await this.initApp();
-      const res = await this.app.signTransaction(hdPath, serializedTxHex);
+      // const res = await this.app.signTransaction(hdPath, serializedTxHex);
+      const res = '';
       this.sendMessageToExtension({
         action: actionReply,
         success: true,
@@ -185,7 +189,8 @@ class LedgerBridge {
   async signPersonalMessage(actionReply, hdPath, message) {
     try {
       await this.initApp();
-      const res = await this.app.signPersonalMessage(hdPath, message);
+      // const res = await this.app.signPersonalMessage(hdPath, message);
+      const res = '';
       this.sendMessageToExtension({
         action: actionReply,
         success: true,
