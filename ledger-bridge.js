@@ -76,48 +76,25 @@ class LedgerBridge {
     // this.transport && WebBleTransport.disconnect(this.transport.device.id);
   };
 
-  async import(actionReply, hdPath) {
-    console.log('----import-----');
-    try {
-      WebBleTransport.listen(async (error, device) => {
-        if (device) {
-          console.log('----import-----device', device);
-          this.transport = await WebBleTransport.connect(device);
-          console.log('transport', transport);
-
-          const res = '0xC85d47b72cA69D2342426C7F1b0930a80178667C';
-          this.sendMessageToExtension({
-            action: actionReply,
-            success: true,
-            payload: res,
-          });
-        } else throw error;
-      });
-    } catch (err) {
-      console.log('----import-----error', err);
-      const e = this.ledgerErrToMessage(err);
-      this.sendMessageToExtension({
-        action: actionReply,
-        success: false,
-        payload: {error: e.toString()},
-      });
-    } finally {
-      this.cleanUp();
-    }
-  };
-
   // async import(actionReply, hdPath) {
+  //   console.log('----import-----');
   //   try {
-  //     await this.initApp();
-  //     // const res = await this.app.getAddress(this.transport, appPrivateKey,
-  //     //   appId, 0);
-  //     const res = '0xC85d47b72cA69D2342426C7F1b0930a80178667C';
-  //     this.sendMessageToExtension({
-  //       action: actionReply,
-  //       success: true,
-  //       payload: res,
+  //     WebBleTransport.listen(async (error, device) => {
+  //       if (device) {
+  //         console.log('----import-----device', device);
+  //         this.transport = await WebBleTransport.connect(device);
+  //         console.log('transport', transport);
+  //
+  //         const res = '0xC85d47b72cA69D2342426C7F1b0930a80178667C';
+  //         this.sendMessageToExtension({
+  //           action: actionReply,
+  //           success: true,
+  //           payload: res,
+  //         });
+  //       } else throw error;
   //     });
   //   } catch (err) {
+  //     console.log('----import-----error', err);
   //     const e = this.ledgerErrToMessage(err);
   //     this.sendMessageToExtension({
   //       action: actionReply,
@@ -128,6 +105,29 @@ class LedgerBridge {
   //     this.cleanUp();
   //   }
   // };
+
+  async import(actionReply, hdPath) {
+    try {
+      // await this.initApp();
+      // const res = await this.app.getAddress(this.transport, appPrivateKey,
+      //   appId, 0);
+      const res = '0xC85d47b72cA69D2342426C7F1b0930a80178667C';
+      this.sendMessageToExtension({
+        action: actionReply,
+        success: true,
+        payload: res,
+      });
+    } catch (err) {
+      const e = this.ledgerErrToMessage(err);
+      this.sendMessageToExtension({
+        action: actionReply,
+        success: false,
+        payload: {error: e.toString()},
+      });
+    } finally {
+      this.cleanUp();
+    }
+  };
 
   async unlock(actionReply, hdPath) {
     try {
