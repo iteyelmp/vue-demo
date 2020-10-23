@@ -76,7 +76,7 @@ class LedgerBridge {
     // this.transport && WebBleTransport.disconnect(this.transport.device.id);
   };
 
-  async import(actionReply, hdPath) {
+  import(actionReply, hdPath) {
     console.log('----import-----');
     try {
       WebBleTransport.listen(async (error, device) => {
