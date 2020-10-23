@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-Equiv="Cache-Control" Content="no-cache" />
-    <meta http-Equiv="Pragma" Content="no-cache" />
-    <meta http-Equiv="Expires" Content="0" />
+    <meta http-Equiv="Cache-Control" Content="no-cache"/>
+    <meta http-Equiv="Pragma" Content="no-cache"/>
+    <meta http-Equiv="Expires" Content="0"/>
     <title>QuarkChain Ledger Bridge</title>
     <style>
         h1 {
@@ -18,7 +18,14 @@
 </head>
 <body>
 <h1>QuarkChain Ledger Bridge</h1>
-
 <script src="./bundle.js"></script>
+
+<script>
+  function clickHandler() {
+    window.LB.import();
+    console.log('点击');
+  }
+</script>
+<button type="button" onclick="clickHandler()">Click Me!</button>
 </body>
 </html>

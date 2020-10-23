@@ -1,8 +1,8 @@
-import WebBleTransport from '@coolwallets/transport-web-ble';
-// import cwsQKC from '@coolwallet/qkc';
-// import {getAppKeysOrGenerate, getAppIdOrNull} from './coolWalletSdkUtil';
-// const {appPrivateKey} = getAppKeysOrGenerate();
-// const appId = getAppIdOrNull();
+import WebBleTransport from '@coolwallet/transport-web-ble';
+import cwsQKC from '@coolwallet/qkc';
+import {getAppKeysOrGenerate, getAppIdOrNull} from './coolWalletSdkUtil';
+const {appPrivateKey} = getAppKeysOrGenerate();
+const appId = getAppIdOrNull();
 
 class LedgerBridge {
   constructor() {
@@ -58,12 +58,12 @@ class LedgerBridge {
 
   async initApp() {
     try {
-      console.log('initApp');
       WebBleTransport.listen(async (error, device) => {
-        console.log('device', device);
         if (device) {
+          this.app = new cwsQKC();
+          console.log('--2--app-----', this.app);
           this.transport = await WebBleTransport.connect(device);
-          console.log('transport', transport);
+          console.log('--3---transport-----', transport);
         } else throw error;
       });
     } catch (err) {
@@ -72,37 +72,44 @@ class LedgerBridge {
   }
 
   cleanUp() {
-    // this.app = null;
-    // this.transport && WebBleTransport.disconnect(this.transport.device.id);
+    console.log('cleanUp');
+    this.transport && WebBleTransport.disconnect(this.transport.device.id);
+    this.transport = null;
+    this.app = null;
   };
 
   import(actionReply, hdPath) {
-    console.log('----import-----');
+    console.log('---1-import-----');
     try {
       WebBleTransport.listen(async (error, device) => {
         if (device) {
-          console.log('----import-----device', device);
-          // this.transport = await WebBleTransport.connect(device);
-          // console.log('transport', transport);
-
-          const res = '0xC85d47b72cA69D2342426C7F1b0930a80178667C';
-          this.sendMessageToExtension({
-            action: actionReply,
-            success: true,
-            payload: res,
+          this.app = new cwsQKC();
+          console.log('--2--app-----', this.app);
+          WebBleTransport.connect(device).then(transport => {
+            this.transport = transport;
+            console.log('--3---transport-----', transport);
           });
+          // const res = await this.app.getAddress(this.transport, appPrivateKey,
+          //   appId, 0);
+          // console.log('address',res);
+          const res = '0xC85d47b72cA69D2342426C7F1b0930a80178667C';
+          // this.sendMessageToExtension({
+          //   action: actionReply,
+          //   success: true,
+          //   payload: res,
+          // });
         } else throw error;
       });
     } catch (err) {
       console.log('----import-----error', err);
       const e = this.ledgerErrToMessage(err);
-      this.sendMessageToExtension({
-        action: actionReply,
-        success: false,
-        payload: {error: e.toString()},
-      });
-    } finally {
-      this.cleanUp();
+      // this.sendMessageToExtension({
+      //   action: actionReply,
+      //   success: false,
+      //   payload: {error: e.toString()},
+      // });
+    // } finally {
+    //   this.cleanUp();
     }
   };
 
